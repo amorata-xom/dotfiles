@@ -1,0 +1,67 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Timeout for commands executed by starship (in milliseconds).
+command_timeout = 3600000
+
+# Timeout for starship to scan files (in milliseconds).
+scan_timeout = 500
+
+# A continuation prompt that displays two filled-in arrows
+continuation_prompt = '❯❯ '
+
+format = """
+$directory$git_branch $git_status $fill $cmd_duration$time$status$username
+$character """
+
+[fill]
+style = 'fg:#28546e'
+symbol = '.'
+
+[character]
+format = "[\u2570\u2500 [❯](fg:#00ff87)](fg:#28546e)"
+
+[status]
+disabled = false
+success_symbol = '🟢'
+symbol = '🔴'
+format = ' [$symbol](style)'
+
+[time]
+disabled = false
+style = 'fg:#03c1ee'
+time_format = "%I:%M"
+use_12hr = true
+format = " [\uf017 $time]($style)"
+
+[cmd_duration]
+style = 'fg:#9eee27'
+min_time = 500
+show_milliseconds = true
+show_notifications = true
+min_time_to_notify = 60000
+format = " [\uf254 $duration]($style)"
+
+[username]
+format = " [💀 ROOT](bg:#FFFF00 fg:#FF0000 bold)"
+
+[directory.substitutions]
+"Documents" = "  "
+"Downloads" = "  "
+"Pictures" = "   "
+"dev" = "  "
+
+[directory]
+style = 'fg:#03c1ee'
+format = "[\u256d\u2500 [$path]($style)](fg:#28546e)"
+truncation_length = 3
+truncation_symbol = "\ueaf7 …/"
+truncate_to_repo = false
+home_symbol = "\uf015 ~"
+use_os_path_sep = false
+
+[git_branch]
+style = 'fg:#bf8cee'
+format = ' [$symbol$branch(:$remote_branch)]($style)'
